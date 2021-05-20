@@ -10,6 +10,7 @@ namespace RuilWinkelVaals.Tests.Helpers
 {
     public static class ControllerValidationHelper
     {
+        //Method to simulate modelbinding by controller
         public static void BindViewModel<T>(this Controller controller, T model)
         {
             if (model == null) return;
