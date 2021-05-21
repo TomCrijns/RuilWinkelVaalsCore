@@ -13,58 +13,56 @@
 
                 <form asp-action="Register">
 
-                    @Html.ValidationMessage("ValidationError", "", new { @class = "Validation" })
-
                     @*Personal info*@
                     <label asp-for="Email" class="Label"></label>
-                    <input asp-for="Email" class="Textbox" />
+                    <input asp-for="Email" class="Textbox" id="emailTextbox"/>
                     <span asp-validation-for="Email" class="Validation"></span>
 
                     <label asp-for="Voornaam" class="Label"></label>
-                    <input asp-for="Voornaam" class="Textbox" />
+                    <input asp-for="Voornaam" class="Textbox" id="voornaamTextbox"/>
                     <span asp-validation-for="Voornaam" class="Validation"></span>
 
                     <label asp-for="Achternaam" class="Label"></label>
-                    <input asp-for="Achternaam" class="Textbox" />
+                    <input asp-for="Achternaam" class="Textbox" id="achternaamTextbox"/>
                     <span asp-validation-for="Achternaam" class="Validation"></span>
 
                     @*Location*@
                     <label asp-for="Straat" class="Label"></label>
-                    <input asp-for="Straat" class="Textbox" />
+                    <input asp-for="Straat" class="Textbox" id="straatTextbox"/>
                     <span asp-validation-for="Straat" class="Validation"></span>
 
                     <label asp-for="Huisnummer" class="Label"></label>
-                    <input asp-for="Huisnummer" class="Textbox" />
+                    <input asp-for="Huisnummer" class="Textbox" id="huisnummerTextbox"/>
                     <span asp-validation-for="Huisnummer" class="Validation"></span>
 
                     <label asp-for="Woonplaats" class="Label"></label>
-                    <input asp-for="Woonplaats" class="Textbox" />
+                    <input asp-for="Woonplaats" class="Textbox" id="woonplaatsTextbox"/>
                     <span asp-validation-for="Woonplaats" class="Validation"></span>
 
                     <label asp-for="Postcode" class="Label"></label>
-                    <input asp-for="Postcode" class="Textbox" />
+                    <input asp-for="Postcode" class="Textbox" id="postcodeTextbox"/>
                     <span asp-validation-for="Postcode" class="Validation"></span>
 
                     @*Date of Birth*@
                     <label asp-for="Geboortedatum" class="Label"></label>
-                    <input asp-for="Geboortedatum" class="Textbox" />
+                    <input asp-for="Geboortedatum" class="Textbox" id="geboortedatumTextbox"/>
                     <span asp-validation-for="Geboortedatum" class="Validation"></span>
 
                     @*Password*@
                     <label asp-for="Password" class="Label"></label>
-                    <input asp-for="Password" class="Textbox" type="password" />
+                    <input asp-for="Password" class="Textbox" type="password" id="passwordTextbox"/>
                     <span asp-validation-for="Password" class="Validation"></span>
 
                     <label asp-for="ValidationPassword" class="Label"></label>
-                    <input asp-for="ValidationPassword" class="Textbox" type="password" />
+                    <input asp-for="ValidationPassword" class="Textbox" type="password" id="validateTextbox"/>
                     <span asp-validation-for="ValidationPassword" class="Validation"></span>
 
                     @*Business*@
                     <label asp-for="Zakelijk" class="Label"></label>
-                    <input asp-for="Zakelijk" type="checkbox" />
+                    <input asp-for="Zakelijk" type="checkbox" id="zakelijkCheckbox"/>
 
-                    @Html.ValidationMessage("RegisterError", null, new { @class = "Validation" })
-                    <input class="Button" type="submit" value="Registreren" onclick="location.href = '@Url.Action("Register")'" />
+                    @Html.ValidationMessage("RegisterError", null, new { @class = "Validation", @id = "registrationError"})
+                    <input class="Button" id="registerButton" type="submit" value="Registreren" onclick="location.href = '@Url.Action("Register")'" />
                 </form>
             </div>
         </div>
