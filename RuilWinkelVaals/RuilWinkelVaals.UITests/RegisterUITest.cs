@@ -12,6 +12,7 @@ namespace RuilWinkelVaals.UITests
     [TestClass]
     class RegisterUITest
     {
+        //Method for making RandomEmails
         public string RandomEmailGenerator()
         {
             var generator = new Random();
