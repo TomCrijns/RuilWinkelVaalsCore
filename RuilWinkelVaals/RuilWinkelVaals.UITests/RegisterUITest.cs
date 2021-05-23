@@ -10,7 +10,7 @@ using System;
 namespace RuilWinkelVaals.UITests
 {
     [TestClass]
-    class RegisterUITest
+    public class RegisterUITest
     {
         //Method for making RandomEmails
         public string RandomEmailGenerator()

@@ -41,31 +41,31 @@ namespace RuilWinkelVaals.UITests
         {
             _driver.Quit();
         }*/
-        [TestMethod]
-        public void TestMethod1()
-        {
-            string url = "<URL>";
-            ChromeDriver driver = new ChromeDriver(@"<DRIVER_PATH_FULL_LOCAL_PC");
-            driver.Navigate().GoToUrl(url);
-            driver.Manage().Window.Maximize();
-
-            //Your code
-
-            //This is example code which can be used for own testing
-            //Make sure everything has clear classname or id
-
-
-            /*driver.FindElement(By.ClassName("Textbox")).SendKeys("admin@ruilwinkelvaals.nl");
-            driver.FindElement(By.ClassName("Textbox")).SendKeys("admin");
-            driver.FindElement(By.ClassName("Button")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 0, 10));
-            wait.Until(wt => wt.FindElement(By.ClassName("Validation")));
-            var message = driver.FindElement(By.ClassName("field-validation-error"));
-            Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));*/
-
-            driver.Close();
-            driver.Dispose();
-        }
-
+        
+        //[TestMethod]
+        //public void TestMethod1()
+        //{
+        //    string url = "<URL>";
+        //    ChromeDriver driver = new ChromeDriver(@"<DRIVER_PATH_FULL_LOCAL_PC");
+        //    driver.Navigate().GoToUrl(url);
+        //    driver.Manage().Window.Maximize();
+        //
+        //    //Your code
+        //
+        //    //This is example code which can be used for own testing
+        //    //Make sure everything has clear classname or id
+        //
+        //
+        //    /*driver.FindElement(By.ClassName("Textbox")).SendKeys("admin@ruilwinkelvaals.nl");
+        //    driver.FindElement(By.ClassName("Textbox")).SendKeys("admin");
+        //    driver.FindElement(By.ClassName("Button")).Click();
+        //    WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 0, 10));
+        //    wait.Until(wt => wt.FindElement(By.ClassName("Validation")));
+        //    var message = driver.FindElement(By.ClassName("field-validation-error"));
+        //    Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));*/
+        //
+        //    driver.Close();
+        //    driver.Dispose();
+        //}
     }
 }
