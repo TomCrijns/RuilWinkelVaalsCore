@@ -9,7 +9,7 @@
     <script src="https://use.fontawesome.com/31b66e833c.js"></script>
 </head>
 <body>
-    <div class="sidebar">
+    <div id="mySidenav" class="sidenav">
         <img class="logo" alt="RuilWinkel Vaals logo" src="~/images/LoginBackgroundImage.png" />
         <a href="#home"><i class="fa fa-fw fa-home"></i> Adminpanel</a>
         <a href="#services"><i class="fa fa-bar-chart"></i> Overzichten</a>
@@ -17,22 +17,49 @@
         <a href="#contact"><i class="fa fa-commenting"></i> Klachten</a>
         <a href="#contact"><i class="fa fa-sign-out"></i> Uitloggen</a>
     </div>
-    <div class="main">
+
+    <div id="main" class="main">
+        <div class="container" onclick="changeNav(), myFunction(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+
         <div class="container body-content">
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
         </div>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - RuilWinkelVaals - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - RuilWinkelVaals - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+
+        function myFunction(x) {
+            x.classList.toggle("change");
+        }
+
+        var lengte = "0px";
+        function changeNav() {
+            if (lengte == "250px") {
+                lengte = "0px";
+            } else {
+                lengte = "250px";
+            }
+            document.getElementById("mySidenav").style.width = lengte;
+            document.getElementById("main").style.marginLeft = lengte;
+        }
+
+
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
