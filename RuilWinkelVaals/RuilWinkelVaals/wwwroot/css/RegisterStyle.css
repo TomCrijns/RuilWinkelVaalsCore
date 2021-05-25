@@ -98,3 +98,11 @@
     margin-top: 0px;
     margin-bottom: 1rem;
 }
+
+.ui-datepicker-trigger {
+    margin-top: 7px;
+    margin-left: -30px;
+    margin-bottom: 0px;
+    position: absolute;
+    z-index: 1000;
+}
