@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using RuilWinkelVaals.ViewModel;
 using RuilWinkelVaals.BusinessLogic.Authentication;
+using System.Globalization;
+using System.Threading;
 
 namespace RuilWinkelVaals.Controllers
 {
@@ -26,6 +28,9 @@ namespace RuilWinkelVaals.Controllers
         public IActionResult Register()
         {
             return View();
+            var cultureInfo = CultureInfo.GetCultureInfo("NL");
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
         }
 
         [HttpPost]

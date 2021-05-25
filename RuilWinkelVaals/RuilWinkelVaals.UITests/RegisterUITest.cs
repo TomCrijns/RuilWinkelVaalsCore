@@ -38,7 +38,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver\geckodriver.exe");
+            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -70,7 +70,7 @@ namespace RuilWinkelVaals.UITests
         public void EmailExists()
         {
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver\geckodriver.exe");
+            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -103,7 +103,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver\geckodriver.exe");
+            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -136,7 +136,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver\geckodriver.exe");
+            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -169,7 +169,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver\geckodriver.exe");
+            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -202,7 +202,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver\geckodriver.exe");
+            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -235,7 +235,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver\geckodriver.exe");
+            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
