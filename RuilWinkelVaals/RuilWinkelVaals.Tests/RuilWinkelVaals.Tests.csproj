@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BusinessLogic\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\RuilWinkelVaals\RuilWinkelVaals.csproj" />
   </ItemGroup>
 
