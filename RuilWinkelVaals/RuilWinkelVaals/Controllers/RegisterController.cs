@@ -77,20 +77,20 @@ namespace RuilWinkelVaals.Controllers
                         }
                         else //Passwords are not equal
                         {
-                            ModelState.AddModelError("ValidationError", "De gegeven wachtwoorden komen niet overeen met elkaar.");
+                            ModelState.AddModelError("RegisterError", "De gegeven wachtwoorden komen niet overeen met elkaar.");
                             return View();
                         }
 
                     }
                     else //Customer is not old enough to register
                     {
-                        ModelState.AddModelError("ValidationError", "U dient minimaal 16jaar te zijn om te registreren.");
+                        ModelState.AddModelError("RegisterError", "U dient minimaal 16jaar te zijn om te registreren.");
                         return View();
                     }
                 }
                 else //If there is an user with the given Email
                 {
-                    ModelState.AddModelError("ValidationError", "Er bestaat al een account met dit Email adres.");
+                    ModelState.AddModelError("RegisterError", "Er bestaat al een account met dit Email adres.");
                     return View();
                 }
             }
