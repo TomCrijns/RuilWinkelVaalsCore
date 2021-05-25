@@ -1,0 +1,28 @@
+﻿@model RuilWinkelVaals.ViewModel.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="Logincontainer">
+    <div class="pt-5">
+        <div class="Loginbox">
+            <div class="form-container">
+                <img class="Logo" alt="RuilWinkel Vaals logo" src="~/Images/LoginBackgroundImage.png" />
+
+                <form asp-action="Login">
+
+                    <label asp-for="emailAddress" id="LoginLabel " class="Label"></label>
+                    <input asp-for="emailAddress" id="EmailTextBox " class="Textbox" />
+                    <span asp-validation-for="emailAddress" id="EmailValidation " class="Validation"></span>
+                    <label asp-for="password" id="PasswordLabel" class="Label"></label>
+                    <input asp-for="password" id="PasswordTextBox" class="Textbox" type="password" />
+                    <span asp-validation-for="password" id="PasswordValidation" class="Validation"></span>
+                    @Html.ValidationMessage("LoginError", null, new { @class = "Validation", @id = "LoginValidationError" })
+                    <input class="Button" type="submit" value="Inloggen" onclick="location.href='@Url.Action("Login")'" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
