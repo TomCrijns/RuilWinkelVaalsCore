@@ -4,11 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RuilWinkelVaals.Models;
 
 namespace RuilWinkelVaals.Controllers
 {
     public class ForgotPasswordController : Controller
     {
+        private readonly DB_DevOpsContext db = new DB_DevOpsContext();
+
         public IActionResult ForgotPassword()
         {
             return View();
@@ -19,8 +22,19 @@ namespace RuilWinkelVaals.Controllers
         {
             if (ModelState.IsValid)
             {
-                TempData["Email"] = model.emailAddress;
-                return RedirectToAction("ForgotPasswordConfirmation", "ForgotPassword");
+                var user = db.ProfileData.Where(e => e.Email == model.emailAddress).FirstOrDefault();
+                if(user != null)
+                {
+
+
+                    TempData["Email"] = model.emailAddress;
+                    return RedirectToAction("ForgotPasswordConfirmation", "ForgotPassword");
+                }
+                else
+                {
+                    TempData["Email"] = model.emailAddress;
+                    return RedirectToAction("ForgotPasswordConfirmation", "ForgotPassword");
+                }
             }
             else
             {
