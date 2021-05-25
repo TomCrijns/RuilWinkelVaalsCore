@@ -17,7 +17,7 @@ namespace RuilWinkelVaals.UITests
         {
             var generator = new Random();
             bool lowerCase = false;
-            int size = generator.Next(0, 10);
+            int size = generator.Next(0, 15);
             
             var builder = new StringBuilder();
             char offset = lowerCase ? 'a' : 'A';
@@ -30,7 +30,8 @@ namespace RuilWinkelVaals.UITests
             }
 
             string randomstring = builder.ToString().ToLower();
-            return randomstring;
+            string email = randomstring + "@testmail.com";
+            return email;
         }
 
         [TestMethod]
@@ -38,7 +39,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
+            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -70,7 +71,7 @@ namespace RuilWinkelVaals.UITests
         public void EmailExists()
         {
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
+            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -103,7 +104,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
+            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -136,7 +137,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
+            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -169,7 +170,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
+            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -202,7 +203,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
+            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -235,7 +236,7 @@ namespace RuilWinkelVaals.UITests
         {
             string randomEmail = RandomEmailGenerator();
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            ChromeDriver driver = new ChromeDriver(@"D:\Program_Files\Downloads\Chrome_Driver");
+            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
 
@@ -258,6 +259,39 @@ namespace RuilWinkelVaals.UITests
             wait.Until(wt => wt.FindElement(By.Id("registrationError")));
             var message = driver.FindElement(By.ClassName("field-validation-error"));
             Assert.IsTrue(message.Text.Contains("Er is geen geboortedatum ingevuld"));
+
+            driver.Close();
+            driver.Dispose();
+        }
+
+        [TestMethod]
+        public void SuccessNewRegistration()
+        {
+            string randomEmail = RandomEmailGenerator();
+            string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
+            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
+            driver.Navigate().GoToUrl(url);
+            driver.Manage().Window.Maximize();
+
+            //Input fields
+            driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
+            driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
+            driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
+            driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
+            driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
+            driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
+            driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
+            driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("01-01-2000");
+            driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
+            driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
+
+            //Submit button
+            driver.FindElement(By.Id("registerButton")).Click();
+            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+
+            wait.Until(wt => wt.FindElement(By.ClassName("display-4")));
+            var message = driver.FindElement(By.ClassName("display-4"));
+            Assert.IsTrue(message.Text.Contains("Welcome"));
 
             driver.Close();
             driver.Dispose();
