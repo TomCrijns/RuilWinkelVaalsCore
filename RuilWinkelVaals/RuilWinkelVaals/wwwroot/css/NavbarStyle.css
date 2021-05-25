@@ -1,0 +1,88 @@
+﻿body {
+}
+
+/* Style the sidebar - fixed full height */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: -5px;
+    left: 0;
+    background-color: #f2f2f2;
+    overflow-x: hidden;
+    padding-top: 16px;
+    transition: 0.5s;
+    box-shadow: 5px 5px 5px grey;
+}
+
+    /* Style sidebar links */
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #401c4c;
+        display: block;
+        transition: 0.3s;
+        font-family: "Lato", sans-serif;
+    }
+
+        /* Style links on mouse-over */
+        .sidenav a:hover {
+            color: #fc9003;
+        }
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+/* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+    }
+
+        .sidebar a {
+            font-size: 18px;
+        }
+}
+
+.logo {
+    height: 15%;
+    width: 70%;
+    margin-left: 15px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+
+/*menubox*/
+.container {
+    display: inline-block;
+    cursor: pointer;
+    height: 50%;
+    width: 50%;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 21px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-2px, 6px);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-4px, -8px);
+}

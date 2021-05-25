@@ -57,11 +57,10 @@
                     <label asp-for="ValidationPassword" class="Label"></label>
                     <input asp-for="ValidationPassword" class="Textbox" type="password" id="validateTextbox" />
                     <span asp-validation-for="ValidationPassword" class="Validation"></span>
-
+                  
                     @*Business*@
                     <label asp-for="Zakelijk" class="Label"></label>
                     <input asp-for="Zakelijk" type="checkbox" id="zakelijkCheckbox" />
-
                     @Html.ValidationMessage("RegisterError", null, new { @class = "Validation", @id = "registrationError" })
                     <input class="Button" id="registerButton" type="submit" value="Registreren" onclick="location.href = '@Url.Action("Register")'" />
                 </form>
