@@ -62,6 +62,10 @@ namespace RuilWinkelVaals
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+               endpoints.MapControllerRoute(
+                    name: "twoparameters",
+                    pattern: "{controller}/{action}/{email}");
             });
         }
     }
