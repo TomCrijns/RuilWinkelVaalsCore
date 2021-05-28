@@ -28,12 +28,13 @@ namespace RuilWinkelVaals.Controllers
                 var user = db.ProfileData.Where(e => e.Email == model.emailAddress).FirstOrDefault();
                 if(user != null)
                 {
-                    PasswordForgottenEmail.SendPasswordForgottenEmail();
+
                     string token = TokenProviderService.GenerateToken();
                     var salt = db.AccountData.Where(e => e.ProfileId == user.Id).FirstOrDefault();
                     string encryptedToken = EncryptionDecryptionService.Encrypt(token, user.Email, salt.Salt);
+                    PasswordForgottenEmail.SendPasswordForgottenEmail(user, encryptedToken);
 
-                    string decryptedToken = EncryptionDecryptionService.Decrypt(encryptedToken, user.Email, salt.Salt);
+                    //string decryptedToken = EncryptionDecryptionService.Decrypt(encryptedToken, user.Email, salt.Salt);
                     TempData["Email"] = model.emailAddress;
 
                     return RedirectToAction("ForgotPasswordConfirmation", "ForgotPassword");
