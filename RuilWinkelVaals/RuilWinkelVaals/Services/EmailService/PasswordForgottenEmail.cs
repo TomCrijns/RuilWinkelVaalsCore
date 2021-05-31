@@ -11,6 +11,7 @@ using System.Net.Mime;
 using System.IO;
 using System.Text;
 using System.Net;
+using Microsoft.Extensions.Configuration;
 
 namespace RuilWinkelVaals.Services.EmailService
 {
@@ -18,26 +19,10 @@ namespace RuilWinkelVaals.Services.EmailService
     {
         private readonly ISendEmailService sendEmailService;
 
-        public static SendEmailConfiguration GetEmailConfiguration()
+        public static void SendPasswordForgottenEmail(ProfileDatum user, string token, IConfiguration config)
         {
-            SendEmailConfiguration emailConfiguration = new SendEmailConfiguration()
-            {
-                SmtpServer = "smtp-relay.sendinblue.com",
-                SmtpPort = 587, 
-                SmtpUseSsl = true,
-                SmtpRequireAuthentication = true,
-                SmtpUsername = "1816802crijns@zuyd.nl",
-                SmtpPassword = "G9ZXgcqUhJYB7NLE"
-            };
-
-            return emailConfiguration;
-        }
-
-        public static void SendPasswordForgottenEmail(ProfileDatum user, string token)
-        {
-            SendEmailConfiguration emailConfiguration = GetEmailConfiguration();
+            SendEmailConfiguration mailConfiguration = SendEmailConfiguration.GetEmailConfiguration(config);
             System.Text.StringBuilder mailcontent = new System.Text.StringBuilder();
-            
             mailcontent.Append("<img src='https://www.ruilwinkelvaals.nl/ruilwinkelvaals.nl/images/ruilwinkel/logo_ruilwinkel_vaalsWEB.jpg'style='width:20%; height:10%;'>");
             mailcontent.Append("<br />");
             mailcontent.Append("<br />");
@@ -57,7 +42,7 @@ namespace RuilWinkelVaals.Services.EmailService
             emailMessage.ToAddresses.Add(new EmailAddress("Tom Crijns", "1816802crijns@zuyd.nl"));
             emailMessage.content = mailcontent.ToString();
 
-            SendEmailService sendEmailService = new SendEmailService(emailConfiguration);
+            SendEmailService sendEmailService = new SendEmailService(mailConfiguration);
             sendEmailService.SendMessage(emailMessage);
         }
     }

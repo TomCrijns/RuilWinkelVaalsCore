@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RuilWinkelVaals.Models;
+using RuilWinkelVaals.Services.EmailService.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,7 @@ namespace RuilWinkelVaals
             });
             services.AddControllersWithViews();
             services.AddDbContext<DB_DevOpsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.Configure<SendEmailConfiguration>(Configuration.GetSection("EmailSettings"));
             services.AddRazorPages();
         }
 
