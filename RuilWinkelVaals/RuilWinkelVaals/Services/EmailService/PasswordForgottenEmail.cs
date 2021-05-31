@@ -19,6 +19,12 @@ namespace RuilWinkelVaals.Services.EmailService
     {
         private readonly ISendEmailService sendEmailService;
 
+        /// <summary>
+        /// This method sends an automated e-mail
+        /// </summary>
+        /// <param name="user">Userprofile of user who mail will be sent to</param>
+        /// <param name="token">Generated encrypted token</param>
+        /// <param name="config">E-mailconfiguration from appsettings.json</param>
         public static void SendPasswordForgottenEmail(ProfileDatum user, string token, IConfiguration config)
         {
             SendEmailConfiguration mailConfiguration = SendEmailConfiguration.GetEmailConfiguration(config);

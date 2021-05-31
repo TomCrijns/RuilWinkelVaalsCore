@@ -16,6 +16,10 @@ namespace RuilWinkelVaals.Services.EmailService.Configuration
             this.configuration = configuration;
         }
 
+        /// <summary>
+        /// Method which will actually send the message
+        /// </summary>
+        /// <param name="emailMessage">Emailmessage to send</param>
         public void SendMessage(EmailMessage emailMessage)
         {
             MailMessage mailMessage = new MailMessage();

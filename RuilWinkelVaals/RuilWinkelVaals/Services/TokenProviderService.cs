@@ -7,6 +7,10 @@ namespace RuilWinkelVaals.Services
 {
     public static class TokenProviderService
     {
+        /// <summary>
+        /// Method to generate a token with a DateTime in it for validation
+        /// </summary>
+        /// <returns></returns>
         public static string GenerateToken()
         {
             byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());

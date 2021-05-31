@@ -10,6 +10,14 @@ namespace RuilWinkelVaals.Services
 {
     public static class EncryptionDecryptionService
     {
+        /// <summary>
+        /// This method will encrypt a string
+        /// WARNING: Do not alter this code without consultation of the developer who worked last on it to prevent encryption failures
+        /// </summary>
+        /// <param name="textToEncrypt">Text to encrypt</param>
+        /// <param name="email">E-mail address of user</param>
+        /// <param name="salt">Existing salt from database</param>
+        /// <returns></returns>
         public static string Encrypt(string textToEncrypt, string email, string salt)
         {
             try

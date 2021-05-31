@@ -20,6 +20,11 @@ namespace RuilWinkelVaals.Services.EmailService.Configuration
         public string SmtpUsername { get; set; }
         public string SmtpPassword { get; set; }
 
+        /// <summary>
+        /// Retrieve configurations for sending an automated e-mail
+        /// </summary>
+        /// <param name="config">config from appsettings.json file</param>
+        /// <returns></returns>
         public static SendEmailConfiguration GetEmailConfiguration(IConfiguration config)
         {
             SendEmailConfiguration emailConfiguration = new SendEmailConfiguration()
