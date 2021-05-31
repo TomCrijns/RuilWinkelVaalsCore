@@ -1,9 +1,49 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    <link rel="stylesheet" href="~/css/AdminStyle.css" />
 }
 
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4"> Admin Panel </h1>
+    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+</div>
+
+<div class="cardBox">
+    <div class="card">
+        <div>
+            <div class="numbers">10</div>
+            <div class="cardName">Personen online</div>
+        </div>
+        <div class="iconBox">
+            <i class="fa fa-users" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="card">
+        <div>
+            <div class="numbers">128</div>
+            <div class="cardName">Producten op Voorraad</div>
+        </div>
+        <div class="iconBox">
+            <i class="fa fa-codepen" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="card">
+        <div>
+            <div class="numbers">31</div>
+            <div class="cardName">Producten uitgeleend</div>
+        </div>
+        <div class="iconBox">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="card">
+        <div>
+            <div class="numbers">2</div>
+            <div class="cardName">Aantal klachten</div>
+        </div>
+        <div class="iconBox">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+        </div>
+    </div>
 </div>

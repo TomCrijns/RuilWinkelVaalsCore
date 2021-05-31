@@ -16,6 +16,9 @@
   <ItemGroup>
     <Folder Include="BusinessLogic\" />
     <Folder Include="ViewModel\" />
+
+
     <Folder Include="wwwroot\images\"/>
+
   </ItemGroup>
 </Project>
