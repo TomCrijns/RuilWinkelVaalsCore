@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using RuilWinkelVaals.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,6 +26,11 @@ namespace RuilWinkelVaals
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var cultureInfo = new CultureInfo("nl-BE");
+            cultureInfo.NumberFormat.CurrencySymbol = "€";
+
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
