@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using RuilWinkelVaals.Models;
 using RuilWinkelVaals.Services;
-using RuilWinkelVaals.Services;
 using RuilWinkelVaals.Services.EmailService;
 using Microsoft.Extensions.Configuration;
 
