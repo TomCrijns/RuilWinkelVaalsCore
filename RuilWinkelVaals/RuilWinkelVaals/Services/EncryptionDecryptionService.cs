@@ -17,7 +17,7 @@ namespace RuilWinkelVaals.Services
         /// <param name="textToEncrypt">Text to encrypt</param>
         /// <param name="email">E-mail address of user</param>
         /// <param name="salt">Existing salt from database</param>
-        /// <returns></returns>
+        /// <returns>An encrypted string</returns>
         public static string Encrypt(string textToEncrypt, string email, string salt)
         {
             try
@@ -52,6 +52,14 @@ namespace RuilWinkelVaals.Services
             }
         }
 
+        /// <summary>
+        /// This method will encrypt a string
+        /// WARNING: Do not alter this code without consultation of the developer who worked last on it to prevent encryption failures
+        /// </summary>
+        /// <param name="encryptedString">An encrypted string</param>
+        /// <param name="email">E-mail address of user</param>
+        /// <param name="salt">Existing salt from database</param>
+        /// <returns>An decrypted string</returns>
         public static string Decrypt(string encryptedString, string email, string salt)
         {
             try
@@ -85,7 +93,7 @@ namespace RuilWinkelVaals.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                return "Invalid";
             }
         }
     }

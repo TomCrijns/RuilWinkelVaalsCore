@@ -95,6 +95,16 @@
     height: 100%;
 }
 
+a {
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    display:block;
+    width:100%;
+    height:100%;
+    padding: 8px 10px;
+}
+
 .Button:hover {
         background: #3b1e4a;
     }

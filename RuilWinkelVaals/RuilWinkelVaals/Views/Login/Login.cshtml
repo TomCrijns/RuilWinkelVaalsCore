@@ -21,6 +21,7 @@
                     <span asp-validation-for="password" id="PasswordValidation" class="Validation"></span>
                     @Html.ValidationMessage("LoginError", null, new { @class = "Validation", @id = "LoginValidationError" })
                     <input class="Button" type="submit" value="Inloggen" onclick="location.href='@Url.Action("Login")'" />
+                    <a href="/ForgotPassword/ForgotPassword">Wachtwoord vergeten? Reset je wachtwoord</a>
                 </form>
             </div>
         </div>

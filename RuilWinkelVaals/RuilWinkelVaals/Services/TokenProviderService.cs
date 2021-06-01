@@ -19,5 +19,26 @@ namespace RuilWinkelVaals.Services
 
             return generatedToken;
         }
+
+        /// <summary>
+        /// Method to decode a token and extract the DateTime portion of it
+        /// If token is invalid, set current date and time with an extraction of 2 hours so that the token is invalid
+        /// </summary>
+        /// <param name="token">Decrypted token with DateTime not extracted yet</param>
+        /// <returns>DateTime of when token was created</returns>
+        public static DateTime GetDateTime(string token)
+        {
+            try
+            {
+                byte[] tokenData = Convert.FromBase64String(token);
+                DateTime dateTime = DateTime.FromBinary(BitConverter.ToInt64(tokenData, 0));
+                return dateTime;
+            }
+            catch
+            {
+                DateTime dateTime = DateTime.UtcNow.AddHours(-2);
+                return dateTime;
+            }
+        }
     }
 }

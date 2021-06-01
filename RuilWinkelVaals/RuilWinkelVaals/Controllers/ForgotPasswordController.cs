@@ -8,6 +8,7 @@ using RuilWinkelVaals.Models;
 using RuilWinkelVaals.Services;
 using RuilWinkelVaals.Services.EmailService;
 using Microsoft.Extensions.Configuration;
+using RuilWinkelVaals.BusinessLogic.Authentication;
 
 namespace RuilWinkelVaals.Controllers
 {
@@ -69,8 +70,95 @@ namespace RuilWinkelVaals.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// Page to show when link has expired
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult ForgotPasswordError()
+        {
+            return View();
+        }
+        /// <summary>
+        /// Show password reset page
+        /// </summary>
+        /// <param name="email">e-mail address of useraccount for which password will be changed </param>
+        /// <param name="token">Token that has been provided by creation of password forgotten e-mail</param>
+        /// <returns>A redirect to the Forgotpassword page or the page in which you can reset your password</returns>
         public IActionResult ResetPassword([FromQuery(Name ="email")]string email, [FromQuery(Name = "token")]string token)
+        {
+            if(email != null || token != null)
+            {
+                var user = db.ProfileData.Where(e => e.Email == email).FirstOrDefault();
+                if(user != null)
+                {
+                    var salt = db.AccountData.Where(e => e.ProfileId == user.Id).FirstOrDefault();
+                    var decryptedToken = EncryptionDecryptionService.Decrypt(token, user.Email, salt.Salt);
+                    if(decryptedToken != "Invalid")
+                    {
+                        DateTime dateTime = TokenProviderService.GetDateTime(decryptedToken);
+
+                        if(dateTime > DateTime.UtcNow.AddHours(-1))
+                        {
+                            TempData["Email"] = email;
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("ForgotPassword");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("ForgotPassword");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("ForgotPassword");
+                }
+            }
+            else
+            {
+                return RedirectToAction("ForgotPassword");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult ResetPassword([Bind("password, passwordValidation")] ResetPassword model)
+        {
+            if (ModelState.IsValid)
+            {
+                string email = TempData["Email"].ToString();
+                if(model.password != model.passwordValidation)
+                {
+                    ModelState.AddModelError("PasswordResetError", "De ingevulde wachtwoorden zijn niet gelijk aan elkaar");
+                    return View();
+                }
+                else
+                {
+                    var userData = db.ProfileData.Where(e => e.Email == email).FirstOrDefault();
+                    if(userData != null)
+                    {
+                        HashSalt newPassword = HashSalt.GenerateHashSalt(16, model.password);
+                        var userCredentials = db.AccountData.Where(user => user.ProfileId == userData.Id).FirstOrDefault();
+                        userCredentials.Hash = newPassword.hash;
+                        userCredentials.Salt = newPassword.salt;
+                        db.SaveChanges();
+                        return RedirectToAction("ResetPasswordConfirmation");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ForgotPassword");
+                    }
+                }
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        public IActionResult ResetPasswordConfirmation()
         {
             return View();
         }
