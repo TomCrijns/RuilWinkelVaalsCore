@@ -23,5 +23,13 @@ namespace RuilWinkelVaals.Tests.Services
             var token = TokenProviderService.GenerateToken();
             Assert.IsNotNull(token);
         }
+
+        [TestMethod]
+        public void DecodeToken()
+        {
+            var token = TokenProviderService.GenerateToken();
+            DateTime dateTime = TokenProviderService.GetDateTime(token);
+            Assert.IsNotNull(token);
+        }
     }
 }

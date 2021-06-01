@@ -45,5 +45,21 @@ namespace RuilWinkelVaals.Tests.Controllers
             ViewResult result = controller.ForgotPassword() as ViewResult;
             Assert.AreEqual("Er is geen e-mailadres ingevuld", result.ViewData.ModelState["emailAddress"].Errors[0].ErrorMessage);
         }
+
+        [TestMethod]
+        public void ForgotPasswordError()
+        {
+            ForgotPasswordController controller = new ForgotPasswordController(config);
+            ViewResult result = controller.ForgotPasswordError() as ViewResult;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void ResetPasswordConfirmation()
+        {
+            ForgotPasswordController controller = new ForgotPasswordController(config);
+            ViewResult result = controller.ResetPasswordConfirmation() as ViewResult;
+            Assert.IsNotNull(result);
+        }
     }
 }
