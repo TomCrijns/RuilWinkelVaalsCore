@@ -27,10 +27,12 @@ namespace RuilWinkelVaals.UITests
             chromeOptions.AddArguments("headless");
             // url = "https://www.google.com";
 
-            string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Login/Login";
+            string url = "https://www.google.com";
             using (var driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions))
             {
                 driver.Navigate().GoToUrl(url);
+                driver.Close();
+                driver.Dispose();
             }
         }
     }
