@@ -29,7 +29,8 @@ namespace RuilWinkelVaals.UITests
             // url = "https://www.google.com";
 
             string url = "https://www.google.com";
-            using (var driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions))
+            //using (var driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions))
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
             {
                 //Notice navigation is slightly different than the Java version
                 //This is because 'get' is a keyword in C#
