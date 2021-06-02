@@ -16,14 +16,22 @@ namespace RuilWinkelVaals.UITests
         [TestMethod]
         public void Test()
         {
+            /* var chromeOptions = new ChromeOptions();
+             chromeOptions.AddArguments("headless");
+             //Arange
+             string url = "https://www.google.com";
+             //ChromeDriver driver = new ChromeDriver(@"C:\Users\tapcr\source\repos\RuilWinkelVaalsCore\RuilWinkelVaals\RuilWinkelVaals.UITests\bin\Debug\netcoreapp2.1");
+             ChromeDriver driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions);
+             //Act*/
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArguments("headless");
-            //Arange
-            string url = "https://www.google.com";
-            //ChromeDriver driver = new ChromeDriver(@"C:\Users\tapcr\source\repos\RuilWinkelVaalsCore\RuilWinkelVaals\RuilWinkelVaals.UITests\bin\Debug\netcoreapp2.1");
-            ChromeDriver driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions);
-            //Act
-            driver.Navigate().GoToUrl(url);
+            // url = "https://www.google.com";
+
+            string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Login/Login";
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions))
+            {
+                driver.Navigate().GoToUrl(url);
+            }
         }
     }
 }
