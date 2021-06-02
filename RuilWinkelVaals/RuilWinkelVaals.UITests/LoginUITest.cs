@@ -23,7 +23,7 @@ namespace RuilWinkelVaals.UITests
             driver.FindElement(By.ClassName("Textbox")).SendKeys("testuser1@ruilwinkelvaals.nl");
             driver.FindElement(By.Id("PasswordTextBox")).SendKeys("test2021");
             driver.FindElement(By.ClassName("Button")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 0, 15));
+            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 0, 20));
             wait.Until(wt => wt.FindElement(By.TagName("p")));
 
             var text = driver.FindElement(By.TagName("p"));
