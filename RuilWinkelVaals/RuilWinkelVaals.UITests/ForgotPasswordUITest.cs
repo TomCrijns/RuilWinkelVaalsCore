@@ -51,7 +51,7 @@ namespace RuilWinkelVaals.UITests
                 wait.Until(d => d.Title.StartsWith("cheese", StringComparison.OrdinalIgnoreCase));
 
                 // Should see: "Cheese - Google Search" (for an English locale)
-                Assert.AreEqual(driver.Title, "Cheese - Google zoeken");
+                Assert.AreEqual(driver.Title, "Cheese - Google Search");
             }
         }
     }
