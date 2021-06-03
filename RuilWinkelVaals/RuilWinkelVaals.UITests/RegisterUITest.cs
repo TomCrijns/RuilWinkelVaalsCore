@@ -34,7 +34,7 @@ namespace RuilWinkelVaals.UITests
             string email = randomstring + "@testmail.com";
             return email;
         }
-        /*
+        
         [TestMethod]
         public void DoBToYoung()
         {
@@ -274,7 +274,7 @@ namespace RuilWinkelVaals.UITests
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
                 wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-                var message = driver.FindElement(By.ClassName("field-validation-error"));
+                var message = driver.FindElement(By.ClassName("Validation"));
                 Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));
 
                 driver.Close();
@@ -353,13 +353,13 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("registerButton")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-                wait.Until(wt => wt.FindElement(By.ClassName("display-4")));
-                var message = driver.FindElement(By.ClassName("display-4"));
+                wait.Until(wt => wt.FindElement(By.TagName("h1")));
+                var message = driver.FindElement(By.ClassName("h1"));
                 Assert.IsTrue(message.Text.Contains("Admin Panel"));
 
                 driver.Close();
                 driver.Dispose();
             }
-        }*/
+        }
     }
 }
