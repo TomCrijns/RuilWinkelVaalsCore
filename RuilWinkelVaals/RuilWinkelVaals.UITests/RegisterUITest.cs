@@ -6,6 +6,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System.Text;
 using System;
+using System.IO;
 
 namespace RuilWinkelVaals.UITests
 {
@@ -38,263 +39,327 @@ namespace RuilWinkelVaals.UITests
         public void DoBToYoung()
         {
             string randomEmail = RandomEmailGenerator();
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("headless");
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
-            driver.Navigate().GoToUrl(url);
-            driver.Manage().Window.Maximize();
+            //FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
 
-            //Input fields
-            driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
-            driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
-            driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
-            driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
-            driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
-            driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
-            driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-            driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Convert.ToString(DateTime.Today.Date));
-            driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password1");
-            driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password2");
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
 
-            //Submit button
-            driver.FindElement(By.Id("registerButton")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                //Input fields
+                driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
+                driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
+                driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
+                driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
+                driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
+                driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
+                driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062021");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password1");
+                driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password2");
 
-            wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-            var message = driver.FindElement(By.ClassName("field-validation-error"));
-            Assert.IsTrue(message.Text.Contains("U dient minimaal 16jaar te zijn om te registreren."));
+                //Submit button
+                driver.FindElement(By.Id("registerButton")).Click();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-            driver.Close();
-            driver.Dispose();
+                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
+                var message = driver.FindElement(By.Id("registrationError"));
+                Assert.IsTrue(message.Text.Contains("U dient minimaal 16jaar te zijn om te registreren."));
+                //Assert.AreEqual("U dient minimaal 16jaar te zijn om te registreren.", message.Text);
+
+               // driver.Close();
+               // driver.Dispose();
+            }
         }
 
         [TestMethod]
         public void EmailExists()
         {
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
-            driver.Navigate().GoToUrl(url);
-            driver.Manage().Window.Maximize();
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("headless");
+            //FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
 
-            //Input fields
-            driver.FindElement(By.Id("emailTextbox")).SendKeys("admin@ruilwinkelvaals.nl");
-            driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
-            driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
-            driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
-            driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
-            driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
-            driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-            driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("01-01-2000");
-            driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password1");
-            driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password2");
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
 
-            //Submit button
-            driver.FindElement(By.Id("registerButton")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                //Input fields
+                driver.FindElement(By.Id("emailTextbox")).SendKeys("admin@ruilwinkelvaals.nl");
+                driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
+                driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
+                driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
+                driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
+                driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
+                driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password1");
+                driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password2");
 
-            wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-            var message = driver.FindElement(By.ClassName("field-validation-error"));
-            Assert.IsTrue(message.Text.Contains("Er bestaat al een account met dit Email adres."));
+                //Submit button
+                driver.FindElement(By.Id("registerButton")).Click();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-            driver.Close();
-            driver.Dispose();
+                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
+                var message = driver.FindElement(By.Id("registrationError"));
+                Assert.IsTrue(message.Text.Contains("Er bestaat al een account met dit Email adres."));
+
+                driver.Close();
+                driver.Dispose();
+            }
         }
 
         [TestMethod]
         public void PasswordNotEqual()
         {
             string randomEmail = RandomEmailGenerator();
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("headless");
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
-            driver.Navigate().GoToUrl(url);
-            driver.Manage().Window.Maximize();
+            //FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
 
-            //Input fields
-            driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
-            driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
-            driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
-            driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
-            driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
-            driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
-            driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-            driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("01-01-2000");
-            driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password1");
-            driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password2");
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
 
-            //Submit button
-            driver.FindElement(By.Id("registerButton")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                //Input fields
+                driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
+                driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
+                driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
+                driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
+                driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
+                driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
+                driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password1");
+                driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password2");
 
-            wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-            var message = driver.FindElement(By.ClassName("field-validation-error"));
-            Assert.IsTrue(message.Text.Contains("De gegeven wachtwoorden komen niet overeen met elkaar."));
+                //Submit button
+                driver.FindElement(By.Id("registerButton")).Click();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-            driver.Close();
-            driver.Dispose();
+                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
+                var message = driver.FindElement(By.Id("registrationError"));
+                Assert.IsTrue(message.Text.Contains("De gegeven wachtwoorden komen niet overeen met elkaar."));
+
+                driver.Close();
+                driver.Dispose();
+            }
         }
 
         [TestMethod]
         public void NoEmailFilledIn()
         {
             string randomEmail = RandomEmailGenerator();
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("headless");
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
-            driver.Navigate().GoToUrl(url);
-            driver.Manage().Window.Maximize();
+            //FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
 
-            //Input fields
-            driver.FindElement(By.Id("emailTextbox")).SendKeys("");
-            driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
-            driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
-            driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
-            driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
-            driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
-            driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-            driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("01-01-2000");
-            driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
-            driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
 
-            //Submit button
-            driver.FindElement(By.Id("registerButton")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                //Input fields
+                driver.FindElement(By.Id("emailTextbox")).SendKeys("");
+                driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
+                driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
+                driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
+                driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
+                driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
+                driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
+                driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
 
-            wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-            var message = driver.FindElement(By.ClassName("field-validation-error"));
-            Assert.IsTrue(message.Text.Contains("Er is geen e-mailadres ingevuld"));
+                //Submit button
+                driver.FindElement(By.Id("registerButton")).Click();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-            driver.Close();
-            driver.Dispose();
+                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
+                var message = driver.FindElement(By.ClassName("field-validation-error"));
+                Assert.IsTrue(message.Text.Contains("Er is geen e-mailadres ingevuld"));
+
+                driver.Close();
+                driver.Dispose();
+            }
         }
 
         [TestMethod]
         public void NoPasswordFilledIn()
         {
             string randomEmail = RandomEmailGenerator();
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("headless");
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
-            driver.Navigate().GoToUrl(url);
-            driver.Manage().Window.Maximize();
+            //FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
 
-            //Input fields
-            driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
-            driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
-            driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
-            driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
-            driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
-            driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
-            driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-            driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("01-01-2000");
-            driver.FindElement(By.Id("passwordTextbox")).SendKeys("");
-            driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
 
-            //Submit button
-            driver.FindElement(By.Id("registerButton")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                //Input fields
+                driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
+                driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
+                driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
+                driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
+                driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
+                driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
+                driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("passwordTextbox")).SendKeys("");
+                driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
 
-            wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-            var message = driver.FindElement(By.ClassName("field-validation-error"));
-            Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));
+                //Submit button
+                driver.FindElement(By.Id("registerButton")).Click();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-            driver.Close();
-            driver.Dispose();
+                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
+                var message = driver.FindElement(By.ClassName("field-validation-error"));
+                Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));
+
+                driver.Close();
+                driver.Dispose();
+            }
         }
 
         [TestMethod]
         public void NoValidationPasswordFilledIn()
         {
             string randomEmail = RandomEmailGenerator();
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("headless");
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
-            driver.Navigate().GoToUrl(url);
-            driver.Manage().Window.Maximize();
+            //FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
 
-            //Input fields
-            driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
-            driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
-            driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
-            driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
-            driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
-            driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
-            driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-            driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("01-01-2000");
-            driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
-            driver.FindElement(By.Id("validateTextbox")).SendKeys("");
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
 
-            //Submit button
-            driver.FindElement(By.Id("registerButton")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
 
-            wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-            var message = driver.FindElement(By.ClassName("field-validation-error"));
-            Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));
+                //Input fields
+                driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
+                driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
+                driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
+                driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
+                driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
+                driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
+                driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
+                driver.FindElement(By.Id("validateTextbox")).SendKeys("");
 
-            driver.Close();
-            driver.Dispose();
+                //Submit button
+                driver.FindElement(By.Id("registerButton")).Click();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+
+                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
+                var message = driver.FindElement(By.ClassName("field-validation-error"));
+                Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));
+
+                driver.Close();
+                driver.Dispose();
+            }
         }
 
         [TestMethod]
         public void NoDoBFilledIn()
         {
             string randomEmail = RandomEmailGenerator();
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("headless");
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
-            driver.Navigate().GoToUrl(url);
-            driver.Manage().Window.Maximize();
+            //FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
 
-            //Input fields
-            driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
-            driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
-            driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
-            driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
-            driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
-            driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
-            driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-            driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("");
-            driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
-            driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
 
-            //Submit button
-            driver.FindElement(By.Id("registerButton")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                //Input fields
+                driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
+                driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
+                driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
+                driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
+                driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
+                driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
+                driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("");
+                driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
+                driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
 
-            wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-            var message = driver.FindElement(By.ClassName("field-validation-error"));
-            Assert.IsTrue(message.Text.Contains("Er is geen geboortedatum ingevuld"));
+                //Submit button
+                driver.FindElement(By.Id("registerButton")).Click();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-            driver.Close();
-            driver.Dispose();
+                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
+                var message = driver.FindElement(By.ClassName("field-validation-error"));
+                Assert.IsTrue(message.Text.Contains("Er is geen geboortedatum ingevuld"));
+
+                driver.Close();
+                driver.Dispose();
+            }
         }
 
         [TestMethod]
         public void SuccessNewRegistration()
         {
             string randomEmail = RandomEmailGenerator();
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("headless");
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
-            FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
-            driver.Navigate().GoToUrl(url);
-            driver.Manage().Window.Maximize();
+            //FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
 
-            //Input fields
-            driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
-            driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
-            driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
-            driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
-            driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
-            driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
-            driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-            driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("01-01-2000");
-            driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
-            driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
 
-            //Submit button
-            driver.FindElement(By.Id("registerButton")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                //Input fields
+                driver.FindElement(By.Id("emailTextbox")).SendKeys(randomEmail);
+                driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
+                driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
+                driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
+                driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
+                driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
+                driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
+                driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
 
-            wait.Until(wt => wt.FindElement(By.ClassName("display-4")));
-            var message = driver.FindElement(By.ClassName("display-4"));
-            Assert.IsTrue(message.Text.Contains("Welcome"));
+                //Submit button
+                driver.FindElement(By.Id("registerButton")).Click();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-            driver.Close();
-            driver.Dispose();
+                wait.Until(wt => wt.FindElement(By.ClassName("display-4")));
+                var message = driver.FindElement(By.ClassName("display-4"));
+                Assert.IsTrue(message.Text.Contains("Admin Panel"));
+
+                driver.Close();
+                driver.Dispose();
+            }
         }
     }
 }
