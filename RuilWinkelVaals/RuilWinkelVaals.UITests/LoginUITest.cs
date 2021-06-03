@@ -169,5 +169,43 @@ namespace RuilWinkelVaals.UITests
                 Assert.IsTrue(emailValidation.Text.Contains("ER IS GEEN E-MAILADRES INGEVULD"));
             }
         }
+
+        [TestMethod]
+        public void NoEmailFilledIn2()
+        {
+            //string randomEmail = RandomEmailGenerator();
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("headless");
+            string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
+            //FirefoxDriver driver = new FirefoxDriver(@"D:\Program_Files\Downloads\FireFox_Driver");
+
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
+
+                //Input fields
+                driver.FindElement(By.Id("emailTextbox")).SendKeys("");
+                driver.FindElement(By.Id("voornaamTextbox")).SendKeys("UI-T-Voornaam");
+                driver.FindElement(By.Id("achternaamTextbox")).SendKeys("UI-T-Achternaam");
+                driver.FindElement(By.Id("straatTextbox")).SendKeys("UI-T-Straat");
+                driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
+                driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
+                driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
+                driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
+
+                //Submit button
+                driver.FindElement(By.Id("registerButton")).Click();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+
+                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
+                var message = driver.FindElement(By.ClassName("Validation"));
+                Assert.IsTrue(message.Text.Contains("Er is geen e-mailadres ingevuld"));
+            }
+        }
     }
 }
