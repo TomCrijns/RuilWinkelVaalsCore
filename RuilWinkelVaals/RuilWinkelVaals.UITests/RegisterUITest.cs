@@ -34,7 +34,7 @@ namespace RuilWinkelVaals.UITests
             string email = randomstring + "@testmail.com";
             return email;
         }
-
+        /*
         [TestMethod]
         public void DoBToYoung()
         {
@@ -72,8 +72,8 @@ namespace RuilWinkelVaals.UITests
                 Assert.IsTrue(message.Text.Contains("U dient minimaal 16jaar te zijn om te registreren."));
                 //Assert.AreEqual("U dient minimaal 16jaar te zijn om te registreren.", message.Text);
 
-               // driver.Close();
-               // driver.Dispose();
+                // driver.Close();
+                // driver.Dispose();
             }
         }
 
@@ -360,6 +360,6 @@ namespace RuilWinkelVaals.UITests
                 driver.Close();
                 driver.Dispose();
             }
-        }
+        }*/
     }
 }
