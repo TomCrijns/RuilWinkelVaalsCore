@@ -351,7 +351,7 @@ namespace RuilWinkelVaals.UITests
 
                 //Submit button
                 driver.FindElement(By.Id("registerButton")).Click();
-                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 3, 0));
 
                 wait.Until(wt => wt.FindElement(By.CssSelector(".display-4")));
                 var message = driver.FindElement(By.CssSelector(".display-4"));
