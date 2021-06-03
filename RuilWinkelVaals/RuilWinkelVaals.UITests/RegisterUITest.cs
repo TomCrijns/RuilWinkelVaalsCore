@@ -353,7 +353,7 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("registerButton")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-                wait.Until(wt => wt.FindElement(By.TagName("h1")));
+                wait.Until(wt => wt.FindElement(By.CssSelector(".display-4")));
                 var message = driver.FindElement(By.CssSelector(".display-4"));
                 Assert.IsTrue(message.Text.Contains("Admin Panel"));
 
