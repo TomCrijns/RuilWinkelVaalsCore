@@ -274,11 +274,11 @@ namespace RuilWinkelVaals.UITests
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
                 wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-                var message = driver.FindElement(By.ClassName("Validation"));
-                Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));
-
-                driver.Close();
-                driver.Dispose();
+                var message = driver.FindElement(By.Id("registrationError"));
+                // Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));
+                Assert.AreEqual("Er is geen wachtwoord ingevuld", message.Text);
+                //driver.Close();
+                //driver.Dispose();
             }
         }
 
@@ -313,11 +313,11 @@ namespace RuilWinkelVaals.UITests
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
                 wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-                var message = driver.FindElement(By.ClassName("field-validation-error"));
-                Assert.IsTrue(message.Text.Contains("Er is geen geboortedatum ingevuld"));
-
-                driver.Close();
-                driver.Dispose();
+                var message = driver.FindElement(By.Id("registrationError"));
+                //Assert.IsTrue(message.Text.Contains("Er is geen geboortedatum ingevuld"));
+                Assert.AreEqual("Er is geen geboortedatum ingevuld", message.Text);
+                //driver.Close();
+                //driver.Dispose();
             }
         }
 
