@@ -251,7 +251,6 @@ namespace RuilWinkelVaals.UITests
 
             using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
             {
-
                 driver.Navigate().GoToUrl(url);
                 driver.Manage().Window.Maximize();
 
@@ -266,6 +265,7 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
                 driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
                 driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                //driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(DateTime.Now.ToString());
                 driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
                 driver.FindElement(By.Id("validateTextbox")).SendKeys("");
 
@@ -273,9 +273,9 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("registerButton")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-                var message = driver.FindElement(By.Id("registrationError"));
-                // Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));
+                wait.Until(wt => wt.FindElement(By.CssSelector(".field-validation-error")));
+                var message = driver.FindElement(By.CssSelector(".field-validation-error"));
+                 Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));
                 Assert.AreEqual("Er is geen wachtwoord ingevuld", message.Text);
                 //driver.Close();
                 //driver.Dispose();
@@ -312,8 +312,8 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("registerButton")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-                var message = driver.FindElement(By.Id("registrationError"));
+                wait.Until(wt => wt.FindElement(By.CssSelector(".field-validation-error")));
+                var message = driver.FindElement(By.CssSelector(".field-validation-error"));
                 //Assert.IsTrue(message.Text.Contains("Er is geen geboortedatum ingevuld"));
                 Assert.AreEqual("Er is geen geboortedatum ingevuld", message.Text);
                 //driver.Close();
@@ -351,7 +351,7 @@ namespace RuilWinkelVaals.UITests
 
                 //Submit button
                 driver.FindElement(By.Id("registerButton")).Click();
-                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 3, 0));
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
                 wait.Until(wt => wt.FindElement(By.CssSelector(".display-4")));
                 var message = driver.FindElement(By.CssSelector(".display-4"));
