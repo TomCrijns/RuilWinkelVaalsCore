@@ -170,7 +170,7 @@ namespace RuilWinkelVaals.UITests
             }
         }
 
-        [TestMethod]
+       /* [TestMethod]
         public void NoEmailFilledIn2()
         {
             //string randomEmail = RandomEmailGenerator();
@@ -207,6 +207,6 @@ namespace RuilWinkelVaals.UITests
                 Assert.AreEqual("Er is geen e-mailadres ingevuld", message.Text);
                 //Assert.IsTrue(message.Text.Contains("Er is geen e-mailadres ingevuld"));
             }
-        }
+        }*/
     }
 }
