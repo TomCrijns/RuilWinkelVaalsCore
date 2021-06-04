@@ -35,7 +35,7 @@ namespace RuilWinkelVaals.UITests
             return email;
         }
         
-        /*[TestMethod]
+        [TestMethod]
         public void DoBToYoung()
         {
             string randomEmail = RandomEmailGenerator();
@@ -57,9 +57,7 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
                 driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
                 driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-                //driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062021");
-                //driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
-                //driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03-06-2021");
                 driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password1");
                 driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password2");
 
@@ -75,9 +73,9 @@ namespace RuilWinkelVaals.UITests
                 // driver.Close();
                 // driver.Dispose();
             }
-        }*/
+        }
 
-        /*[TestMethod]
+        [TestMethod]
         public void EmailExists()
         {
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
@@ -98,9 +96,7 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
                 driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
                 driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03-06-2000");
                 driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password1");
                 driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password2");
 
@@ -139,9 +135,7 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
                 driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
                 driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03-06-2000");
                 driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password1");
                 driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password2");
 
@@ -180,9 +174,7 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
                 driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
                 driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-               // driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
-               // driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
-               // driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03-06-2000");
                 driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
                 driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
 
@@ -190,8 +182,8 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("registerButton")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-                var message = driver.FindElement(By.CssSelector(".field-validation-error"));
+                wait.Until(wt => wt.FindElement(By.Id("EmailValidation")));
+                var message = driver.FindElement(By.Id("EmailValidation"));
                 Assert.IsTrue(message.Text.Contains("Er is geen e-mailadres ingevuld"));
 
                 driver.Close();
@@ -221,9 +213,7 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
                 driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
                 driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03-06-2000");
                 driver.FindElement(By.Id("passwordTextbox")).SendKeys("");
                 driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
 
@@ -231,8 +221,8 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("registerButton")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-                wait.Until(wt => wt.FindElement(By.Id("registrationError")));
-                var message = driver.FindElement(By.CssSelector(".field-validation-error"));
+                wait.Until(wt => wt.FindElement(By.Id("PasswordValidation")));
+                var message = driver.FindElement(By.Id("PasswordValidation"));
                 Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));
 
                 driver.Close();
@@ -262,10 +252,7 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
                 driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
                 driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
-                //driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(DateTime.Now.ToString());
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03-06-2000");
                 driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
                 driver.FindElement(By.Id("validateTextbox")).SendKeys("");
 
@@ -273,8 +260,8 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("registerButton")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-                wait.Until(wt => wt.FindElement(By.CssSelector(".Validation.field-validation-error")));
-                var message = driver.FindElement(By.CssSelector(".Validation.field-validation-error"));
+                wait.Until(wt => wt.FindElement(By.Id("ValidationPasswordValidation")));
+                var message = driver.FindElement(By.Id("ValidationPasswordValidation"));
                 Assert.IsTrue(message.Text.Contains("Er is geen wachtwoord ingevuld"));
                 Assert.AreEqual("Er is geen wachtwoord ingevuld", message.Text);
                 //driver.Close();
@@ -312,8 +299,8 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("registerButton")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-                wait.Until(wt => wt.FindElement(By.CssSelector(".field-validation-error")));
-                var message = driver.FindElement(By.CssSelector(".field-validation-error"));
+                wait.Until(wt => wt.FindElement(By.Id("DoBValidation")));
+                var message = driver.FindElement(By.Id("DoBValidation"));
                 //Assert.IsTrue(message.Text.Contains("Er is geen geboortedatum ingevuld"));
                 Assert.AreEqual("Er is geen geboortedatum ingevuld", message.Text);
                 //driver.Close();
@@ -343,9 +330,7 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
                 driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
                 driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03062000");
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1051");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("03-06-2000");
                 driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
                 driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
 
@@ -353,13 +338,13 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("registerButton")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-                wait.Until(wt => wt.FindElement(By.CssSelector(".display-4")));
-                var message = driver.FindElement(By.CssSelector(".display-4"));
+                wait.Until(wt => wt.FindElement(By.TagName("h1")));
+                var message = driver.FindElement(By.TagName("h1"));
                 Assert.IsTrue(message.Text.Contains("Admin Panel"));
 
                 driver.Close();
                 driver.Dispose();
             }
-        }*/
+        }
     }
 }

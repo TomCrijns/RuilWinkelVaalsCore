@@ -26,7 +26,7 @@ namespace RuilWinkelVaals.Tests.Controllers
             Assert.IsNotNull(result);
         }
 
-      /*  [TestMethod]
+        [TestMethod]
         public void NoEmailFilledIn()
         {
             //Arrange
@@ -35,7 +35,7 @@ namespace RuilWinkelVaals.Tests.Controllers
             newAccount.Email = "";
             newAccount.Password = "testpassword";
             newAccount.ValidationPassword = "testpassword";
-            newAccount.Geboortedatum = new DateTime(2000, 1, 1);
+            newAccount.Geboortedatum = "1-1-2000";
 
             ControllerValidationHelper.BindViewModel(regController, newAccount);
             //Act
@@ -54,7 +54,7 @@ namespace RuilWinkelVaals.Tests.Controllers
             newAccount.Email = "testmail@mail.com";
             newAccount.Password = "";
             newAccount.ValidationPassword = "testpassword";
-            newAccount.Geboortedatum = new DateTime(2000, 1, 1);
+            newAccount.Geboortedatum = "1-1-2000";
 
             ControllerValidationHelper.BindViewModel(regController, newAccount);
             //Act
@@ -73,7 +73,7 @@ namespace RuilWinkelVaals.Tests.Controllers
             newAccount.Email = "testmail@mail.com";
             newAccount.Password = "testpassword";
             newAccount.ValidationPassword = "";
-            newAccount.Geboortedatum = new DateTime(2000, 1, 1);
+            newAccount.Geboortedatum = "1-1-2000";
 
             ControllerValidationHelper.BindViewModel(regController, newAccount);
             //Act
@@ -83,7 +83,7 @@ namespace RuilWinkelVaals.Tests.Controllers
             Assert.AreEqual(result.ViewData.ModelState["ValidationPassword"].Errors[0].ErrorMessage, "Er is geen wachtwoord ingevuld");
         }
 
-       /* [TestMethod]
+        [TestMethod]
         public void NoDoBFilledIn()
         {
             //Arrange
@@ -112,7 +112,7 @@ namespace RuilWinkelVaals.Tests.Controllers
                 Email = "test",
                 Password = "testpassword",
                 ValidationPassword = "testpassword",
-                Geboortedatum = new DateTime(2000, 01, 01),
+                Geboortedatum = "1-1-2000"
             };
 
             Register existAccount = new Register()
@@ -120,7 +120,7 @@ namespace RuilWinkelVaals.Tests.Controllers
                 Email = "test",
                 Password = "testpassword",
                 ValidationPassword = "testpassword",
-                Geboortedatum = new DateTime(2000, 01, 01),
+                Geboortedatum = "1-1-2000"
             };
 
             //Act
@@ -138,7 +138,7 @@ namespace RuilWinkelVaals.Tests.Controllers
             newAccount.Email = "testmail@mail.com";
             newAccount.Password = "testpassword";
             newAccount.ValidationPassword = "testpassword";
-            newAccount.Geboortedatum = DateTime.Today.Date;
+            newAccount.Geboortedatum = DateTime.Today.Date.ToString();
 
             //Act
             int result = regController.GetAge(Convert.ToDateTime(newAccount.Geboortedatum));
@@ -158,12 +158,12 @@ namespace RuilWinkelVaals.Tests.Controllers
             newAccount.Email = "testmail@mail.com";
             newAccount.Password = "testpassword1";
             newAccount.ValidationPassword = "testpassword2";
-            newAccount.Geboortedatum = new DateTime(2000, 1, 1);
+            newAccount.Geboortedatum = "1-1-2000";
 
             //Act
             bool AreEqual = newAccount.Password.Equals(newAccount.ValidationPassword);
             //Assert
             Assert.IsFalse(AreEqual);
-        }*/
+        }
     }
 }
