@@ -39,63 +39,71 @@ namespace RuilWinkelVaals.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Try to get an Profile where email is similar to the userinput
-                var profileExists = db.ProfileData.Where(user => user.Email == model.Email).FirstOrDefault();
-                if (profileExists == null) //If there is not an registered user with the given Email
+                if(model.Geboortedatum != null)
                 {
-                    var ProfileAge = GetAge(Convert.ToDateTime(model.Geboortedatum).Date);
-                    if (ProfileAge >= 16) //Customer is old enough to register
+                    //Try to get an Profile where email is similar to the userinput
+                    var profileExists = db.ProfileData.Where(user => user.Email == model.Email).FirstOrDefault();
+                    if (profileExists == null) //If there is not an registered user with the given Email
                     {
-                        if (model.Password == model.ValidationPassword) //Given passwords are equal
+                        var ProfileAge = GetAge(Convert.ToDateTime(model.Geboortedatum).Date);
+                        if (ProfileAge >= 16) //Customer is old enough to register
                         {
-                            ProfileDatum newProfile = new ProfileDatum() //Create new ProfileObject
+                            if (model.Password == model.ValidationPassword) //Given passwords are equal
                             {
-                                Email = model.Email,
-                                Voornaam = model.Voornaam,
-                                Achternaam = model.Achternaam,
-                                Straat = model.Straat,
-                                Huisnummer = model.Huisnummer,
-                                Woonplaats = model.Woonplaats,
-                                Postcode = model.Postcode,
-                                Geboortedatum = Convert.ToDateTime(model.Geboortedatum).Date,
-                                DateCreated = DateTime.Today.Date,
-                            };
+                                ProfileDatum newProfile = new ProfileDatum() //Create new ProfileObject
+                                {
+                                    Email = model.Email,
+                                    Voornaam = model.Voornaam,
+                                    Achternaam = model.Achternaam,
+                                    Straat = model.Straat,
+                                    Huisnummer = model.Huisnummer,
+                                    Woonplaats = model.Woonplaats,
+                                    Postcode = model.Postcode,
+                                    Geboortedatum = Convert.ToDateTime(model.Geboortedatum).Date,
+                                    DateCreated = DateTime.Today.Date,
+                                };
 
-                            //Save profile to DB
-                            db.ProfileData.Add(newProfile);
-                            db.SaveChanges();
+                                //Save profile to DB
+                                db.ProfileData.Add(newProfile);
+                                db.SaveChanges();
 
-                            //Get ProfileId for Foreign relation
-                            var ProfileId = db.ProfileData.Where(profile => profile.Email == model.Email).FirstOrDefault();
-                            //Create new Account with relation to ProfileData
-                            HashSalt hashSalt = HashSalt.GenerateHashSalt(16, model.Password);
-                            AccountDatum newAccount = new AccountDatum()
+                                //Get ProfileId for Foreign relation
+                                var ProfileId = db.ProfileData.Where(profile => profile.Email == model.Email).FirstOrDefault();
+                                //Create new Account with relation to ProfileData
+                                HashSalt hashSalt = HashSalt.GenerateHashSalt(16, model.Password);
+                                AccountDatum newAccount = new AccountDatum()
+                                {
+                                    ProfileId = ProfileId.Id,
+                                    Hash = hashSalt.hash,
+                                    Salt = hashSalt.salt,
+                                };
+                                db.AccountData.Add(newAccount);
+                                db.SaveChanges();
+                                return RedirectToAction("Index", "Home");
+
+                            }
+                            else //Passwords are not equal
                             {
-                                ProfileId = ProfileId.Id,
-                                Hash = hashSalt.hash,
-                                Salt = hashSalt.salt,
-                            };
-                            db.AccountData.Add(newAccount);
-                            db.SaveChanges();
-                            return RedirectToAction("Index", "Home");
+                                ModelState.AddModelError("RegisterError", "De gegeven wachtwoorden komen niet overeen met elkaar.");
+                                return View();
+                            }
 
                         }
-                        else //Passwords are not equal
+                        else //Customer is not old enough to register
                         {
-                            ModelState.AddModelError("RegisterError", "De gegeven wachtwoorden komen niet overeen met elkaar.");
+                            ModelState.AddModelError("RegisterError", "U dient minimaal 16jaar te zijn om te registreren.");
                             return View();
                         }
-
                     }
-                    else //Customer is not old enough to register
+                    else //If there is an user with the given Email
                     {
-                        ModelState.AddModelError("RegisterError", "U dient minimaal 16jaar te zijn om te registreren.");
+                        ModelState.AddModelError("RegisterError", "Er bestaat al een account met dit Email adres.");
                         return View();
                     }
                 }
-                else //If there is an user with the given Email
+                else
                 {
-                    ModelState.AddModelError("RegisterError", "Er bestaat al een account met dit Email adres.");
+                    ModelState.AddModelError("RegisterError", "Er Is geen geboortedatum ingevuld.");
                     return View();
                 }
             }

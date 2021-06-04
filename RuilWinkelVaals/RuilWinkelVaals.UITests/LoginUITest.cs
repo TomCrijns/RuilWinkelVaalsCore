@@ -170,7 +170,7 @@ namespace RuilWinkelVaals.UITests
             }
         }
 
-       /* [TestMethod]
+        [TestMethod]
         public void NoEmailFilledIn2()
         {
             //string randomEmail = RandomEmailGenerator();
@@ -192,9 +192,9 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("huisnummerTextbox")).SendKeys("UI-T-1");
                 driver.FindElement(By.Id("woonplaatsTextbox")).SendKeys("UI-T-Woonplaats");
                 driver.FindElement(By.Id("postcodeTextbox")).SendKeys("UI-T-PST");
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("4-6-2021");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("0462021");
                 driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys(Keys.Tab);
-                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("10:08");
+                driver.FindElement(By.Id("geboortedatumTextbox")).SendKeys("1008");
                 driver.FindElement(By.Id("passwordTextbox")).SendKeys("UI-T-password");
                 driver.FindElement(By.Id("validateTextbox")).SendKeys("UI-T-password");
 
@@ -207,6 +207,6 @@ namespace RuilWinkelVaals.UITests
                 Assert.AreEqual("Er is geen e-mailadres ingevuld", message.Text);
                 //Assert.IsTrue(message.Text.Contains("Er is geen e-mailadres ingevuld"));
             }
-        }*/
+        }
     }
 }

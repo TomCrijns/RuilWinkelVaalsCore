@@ -77,7 +77,7 @@ namespace RuilWinkelVaals.UITests
             }
         }*/
 
-        [TestMethod]
+        /*[TestMethod]
         public void EmailExists()
         {
             string url = "https://test-ruilwinkelvaalscore.azurewebsites.net/Register/Register";
@@ -321,7 +321,7 @@ namespace RuilWinkelVaals.UITests
             }
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void SuccessNewRegistration()
         {
             string randomEmail = RandomEmailGenerator();
