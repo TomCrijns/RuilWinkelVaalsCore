@@ -83,7 +83,7 @@ namespace RuilWinkelVaals.Tests.Controllers
             Assert.AreEqual(result.ViewData.ModelState["ValidationPassword"].Errors[0].ErrorMessage, "Er is geen wachtwoord ingevuld");
         }
 
-        [TestMethod]
+       /* [TestMethod]
         public void NoDoBFilledIn()
         {
             //Arrange
@@ -100,7 +100,7 @@ namespace RuilWinkelVaals.Tests.Controllers
             //Assert
             Assert.IsTrue(!result.ViewData.ModelState.IsValid);
             Assert.AreEqual(result.ViewData.ModelState["Geboortedatum"].Errors[0].ErrorMessage, "Er is geen geboortedatum ingevuld");
-        }
+        }*/
 
         [TestMethod]
         public void EmailExists()
