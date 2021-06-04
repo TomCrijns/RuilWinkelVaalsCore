@@ -40,9 +40,9 @@ namespace RuilWinkelVaals.ViewModel
 
         public DateTime DateCreated { get; set; }
 
-        //[Required(ErrorMessage = "Er is geen geboortedatum ingevuld")]
+        [Required(ErrorMessage = "Er is geen geboortedatum ingevuld")]
         [Display(Name = "Geboortedatum")]
-        public DateTime? Geboortedatum { get; set; }
+        public string Geboortedatum { get; set; }
         [Display(Name = "Zakelijk?")]
         public bool Zakelijk { get; set; }
     }

@@ -26,7 +26,7 @@ namespace RuilWinkelVaals.Tests.Controllers
             Assert.IsNotNull(result);
         }
 
-        [TestMethod]
+      /*  [TestMethod]
         public void NoEmailFilledIn()
         {
             //Arrange
@@ -100,7 +100,7 @@ namespace RuilWinkelVaals.Tests.Controllers
             //Assert
             Assert.IsTrue(!result.ViewData.ModelState.IsValid);
             Assert.AreEqual(result.ViewData.ModelState["Geboortedatum"].Errors[0].ErrorMessage, "Er is geen geboortedatum ingevuld");
-        }*/
+        }
 
         [TestMethod]
         public void EmailExists()
@@ -164,6 +164,6 @@ namespace RuilWinkelVaals.Tests.Controllers
             bool AreEqual = newAccount.Password.Equals(newAccount.ValidationPassword);
             //Assert
             Assert.IsFalse(AreEqual);
-        }
+        }*/
     }
 }
