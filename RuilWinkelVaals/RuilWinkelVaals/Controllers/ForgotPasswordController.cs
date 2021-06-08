@@ -104,22 +104,22 @@ namespace RuilWinkelVaals.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("ForgotPassword");
+                            return RedirectToAction("ForgotPasswordError");
                         }
                     }
                     else
                     {
-                        return RedirectToAction("ForgotPassword");
+                        return RedirectToAction("ForgotPasswordError");
                     }
                 }
                 else
                 {
-                    return RedirectToAction("ForgotPassword");
+                    return RedirectToAction("ForgotPasswordError");
                 }
             }
             else
             {
-                return RedirectToAction("ForgotPassword");
+                return RedirectToAction("ForgotPasswordError");
             }
         }
 
