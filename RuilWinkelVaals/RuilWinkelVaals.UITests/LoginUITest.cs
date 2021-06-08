@@ -26,7 +26,7 @@ namespace RuilWinkelVaals.UITests
                 driver.Navigate().GoToUrl(url);
                 driver.Manage().Window.Maximize();
                 driver.FindElement(By.ClassName("Textbox")).SendKeys("1816802crijns@zuyd.nl");
-                driver.FindElement(By.Id("PasswordTextBox")).SendKeys("test");
+                driver.FindElement(By.Id("PasswordTextBox")).SendKeys("T3stW@achtw00rD");
                 driver.FindElement(By.ClassName("Button")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
                 wait.Until(wt => wt.FindElement(By.TagName("p")));
