@@ -222,5 +222,155 @@ namespace RuilWinkelVaals.UITests
                 Assert.IsTrue(passwordValidation.Text.Contains("GELUKT"));
             }
         }
+
+        [TestMethod]
+        public void NoEmailAddressOrToken()
+        {
+            //Arange
+            var chromeOptions = new ChromeOptions();
+            //chromeOptions.AddArguments("headless");
+            var token = TokenProviderService.GenerateToken();
+            string email = "";
+            string encryptedToken = "";
+            string url = String.Format("https://test-ruilwinkelvaalscore.azurewebsites.net/ForgotPassword/ResetPassword?email={0}&token={1}", email, encryptedToken);
+
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                //Act
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                wait.Until(wt => wt.FindElement(By.TagName("h1")));
+                var passwordValidation = driver.FindElement(By.TagName("h1"));
+
+                //Assert
+                Assert.IsTrue(passwordValidation.Text.Contains("ONGELDIGE LINK"));
+            }
+        }
+
+        [TestMethod]
+        public void NoEmailAddress()
+        {
+            //Arange
+            var chromeOptions = new ChromeOptions();
+            //chromeOptions.AddArguments("headless");
+            var token = TokenProviderService.GenerateToken();
+            string fakeEmailForEncryption = "test@test.nl";
+            string email = "";
+            string salt = DBDataHelper.GetSaltFromDB();
+            var encryptedToken = EncryptionDecryptionService.Encrypt(token, fakeEmailForEncryption, salt);
+            string url = String.Format("https://test-ruilwinkelvaalscore.azurewebsites.net/ForgotPassword/ResetPassword?email={0}&token={1}", email, encryptedToken);
+
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                //Act
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                wait.Until(wt => wt.FindElement(By.TagName("h1")));
+                var passwordValidation = driver.FindElement(By.TagName("h1"));
+
+                //Assert
+                Assert.IsTrue(passwordValidation.Text.Contains("ONGELDIGE LINK"));
+            }
+        }
+
+        [TestMethod]
+        public void NoToken()
+        {
+            //Arange
+            var chromeOptions = new ChromeOptions();
+            //chromeOptions.AddArguments("headless");
+            var encryptedToken = "";
+            string email = "1816802crijns@zuyd.nl";
+            string url = String.Format("https://test-ruilwinkelvaalscore.azurewebsites.net/ForgotPassword/ResetPassword?email={0}&token={1}", email, encryptedToken);
+
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                //Act
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                wait.Until(wt => wt.FindElement(By.TagName("h1")));
+                var passwordValidation = driver.FindElement(By.TagName("h1"));
+
+                //Assert
+                Assert.IsTrue(passwordValidation.Text.Contains("ONGELDIGE LINK"));
+            }
+        }
+
+        [TestMethod]
+        public void NonExistingEmailAddress()
+        {
+            //Arange
+            var chromeOptions = new ChromeOptions();
+            //chromeOptions.AddArguments("headless");
+            var token = TokenProviderService.GenerateToken();
+            string email = "Test@Test.nl";
+            string salt = DBDataHelper.GetSaltFromDB();
+            var encryptedToken = EncryptionDecryptionService.Encrypt(token, email, salt);
+            string url = String.Format("https://test-ruilwinkelvaalscore.azurewebsites.net/ForgotPassword/ResetPassword?email={0}&token={1}", email, encryptedToken);
+
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                //Act
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                wait.Until(wt => wt.FindElement(By.TagName("h1")));
+                var passwordValidation = driver.FindElement(By.TagName("h1"));
+
+                //Assert
+                Assert.IsTrue(passwordValidation.Text.Contains("ONGELDIGE LINK"));
+            }
+        }
+
+        [TestMethod]
+        public void InvalidToken()
+        {
+            //Arange
+            var chromeOptions = new ChromeOptions();
+            //chromeOptions.AddArguments("headless");
+            var token = "50396ek4mfwldlti";
+            string email = "1816802crijns@zuyd.nl";
+            string url = String.Format("https://test-ruilwinkelvaalscore.azurewebsites.net/ForgotPassword/ResetPassword?email={0}&token={1}", email, token);
+
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                //Act
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                wait.Until(wt => wt.FindElement(By.TagName("h1")));
+                var passwordValidation = driver.FindElement(By.TagName("h1"));
+
+                //Assert
+                Assert.IsTrue(passwordValidation.Text.Contains("ONGELDIGE LINK"));
+            }
+        }
+
+        [TestMethod]
+        public void ExpiredToken()
+        {
+            //Arange
+            var chromeOptions = new ChromeOptions();
+            //chromeOptions.AddArguments("headless");
+            var token = "OJEZqAi8ATk2+JynZbTTocYyMRaRLhmzcM1uN0+Wb1d/SYvBNl3OQg==";
+            string email = "1816802crijns@zuyd.nl";
+            string url = String.Format("https://test-ruilwinkelvaalscore.azurewebsites.net/ForgotPassword/ResetPassword?email={0}&token={1}", email, token);
+
+            using (var driver = new ChromeDriver(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), chromeOptions))
+            {
+                //Act
+                driver.Navigate().GoToUrl(url);
+                driver.Manage().Window.Maximize();
+                WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
+                wait.Until(wt => wt.FindElement(By.TagName("h1")));
+                var passwordValidation = driver.FindElement(By.TagName("h1"));
+
+                //Assert
+                Assert.IsTrue(passwordValidation.Text.Contains("ONGELDIGE LINK"));
+            }
+        }
     }
 }
