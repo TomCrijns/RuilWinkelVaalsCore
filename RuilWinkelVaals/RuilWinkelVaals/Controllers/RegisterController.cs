@@ -38,7 +38,7 @@ namespace RuilWinkelVaals.Controllers
         public IActionResult Register([Bind("Email, Password, ValidationPassword, Voornaam, Achternaam, Straat, Huisnummer, Woonplaats, Postcode, Geboortedatum, Zakelijk")] Register model)
         {
             if (ModelState.IsValid)
-            {
+            { 
                 //Try to get an Profile where email is similar to the userinput
                 var profileExists = db.ProfileData.Where(user => user.Email == model.Email).FirstOrDefault();
                 if (profileExists == null) //If there is not an registered user with the given Email

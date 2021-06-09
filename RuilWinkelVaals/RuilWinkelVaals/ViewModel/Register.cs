@@ -42,7 +42,7 @@ namespace RuilWinkelVaals.ViewModel
 
         [Required(ErrorMessage = "Er is geen geboortedatum ingevuld")]
         [Display(Name = "Geboortedatum")]
-        public DateTime? Geboortedatum { get; set; }
+        public string Geboortedatum { get; set; }
         [Display(Name = "Zakelijk?")]
         public bool Zakelijk { get; set; }
     }
