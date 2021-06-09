@@ -1,9 +1,117 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    <link rel="stylesheet" href="~/css/AdminStyle.css" />
 }
 
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4"> Admin Panel </h1>
+    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
 </div>
+<div id="particulier", class="particulier">
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">13</div>
+                <div class="cardName">Balans</div>
+            </div>
+            <div class="iconBox">
+                <i class="fa fa-users" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">47</div>
+                <div class="cardName">Catalogus</div>
+            </div>
+            <div class="iconBox">
+                <i class="fa fa-codepen" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="zakelijk", class="zakelijk">
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">63</div>
+                <div class="cardName">Balans</div>
+            </div>
+            <div class="iconBox">
+                <i class="fa fa-users" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">47</div>
+                <div class="cardName">Catalogus</div>
+            </div>
+            <div class="iconBox">
+                <i class="fa fa-codepen" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="medewerker" , class="medewerker">
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">4</div>
+                <div class="cardName">Geblokkeerde Accounts</div>
+            </div>
+            <div class="iconBox">
+                <i class="fa fa-users" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="systeembeheerder" , class="systeembeheerder">
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">10</div>
+                <div class="cardName">Geblokkeerde Accounts</div>
+            </div>
+            <div class="iconBox">
+                <i class="fa fa-users" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = pageInfo;
+
+    function pageInfo() {
+        var overzicht = 4;
+        var a = document.getElementById("particulier");
+        if (overzicht == 1) {
+            a.style.display = "block";
+        } else {
+            a.style.display = "none";
+        }
+        var b = document.getElementById("zakelijk");
+        if (overzicht == 2) {
+            b.style.display = "block";
+        } else {
+            b.style.display = "none";
+        }
+
+        var c = document.getElementById("medewerker");
+        if (overzicht == 3) {
+            c.style.display = "block";
+        } else {
+            c.style.display = "none";
+        }
+
+        var d = document.getElementById("systeembeheerder");
+        if (overzicht == 4) {
+            d.style.display = "block";
+        } else {
+            d.style.display = "none";
+        }
+    }
+</script>
