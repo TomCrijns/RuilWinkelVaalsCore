@@ -21,6 +21,27 @@ namespace RuilWinkelVaals.Controllers
 
         public IActionResult Index()
         {
+            var accounttype =  Convert.ToInt32(HttpContext.Session.GetInt32("AccountType"));
+            var ProfileName = HttpContext.Session.GetString("ProfileName");
+            if(accounttype == 1)
+            {
+                return View();
+            }else if(accounttype == 2)
+            {
+                return View();
+            }
+            else if(accounttype == 3)
+            {
+                return View();
+            }
+            else if(accounttype == 4)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
             return View();
         }
 
@@ -33,6 +54,12 @@ namespace RuilWinkelVaals.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Login");
         }
     }
 }
