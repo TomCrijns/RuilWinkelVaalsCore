@@ -9,13 +9,14 @@
     <script src="https://use.fontawesome.com/31b66e833c.js"></script>
 </head>
 <body>
+
     <div id="mySidenav" class="sidenav">
         <img class="logo" alt="RuilWinkel Vaals logo" src="~/images/LoginBackgroundImage.png" />
         <a href="/Home/Index"><i class="fa fa-fw fa-home"></i> Adminpanel</a>
         <a href="/ProfileDatums/Index"><i class="fa fa-bar-chart"></i> Overzichten</a>
         <a href="#clients"><i class="fa fa-book"></i> Inname/Uitgifte</a>
         <a href="#contact"><i class="fa fa-commenting"></i> Klachten</a>
-        <a href="#contact"><i class="fa fa-sign-out"></i> Uitloggen</a>
+        <a href="/Login/Login"><i class="fa fa-sign-out"></i> Uitloggen</a>
     </div>
 
     <div id="main" class="main">
@@ -25,7 +26,7 @@
             <div class="bar3"></div>
         </div>
 
-        <div class="container body-content">
+        <div class="mainBox body-content">
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
