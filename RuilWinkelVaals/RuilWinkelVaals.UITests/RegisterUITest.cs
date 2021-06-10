@@ -338,9 +338,9 @@ namespace RuilWinkelVaals.UITests
                 driver.FindElement(By.Id("registerButton")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
 
-                wait.Until(wt => wt.FindElement(By.TagName("h1")));
-                var message = driver.FindElement(By.TagName("h1"));
-                Assert.IsTrue(message.Text.Contains("Admin Panel"));
+                wait.Until(wt => wt.FindElement(By.ClassName("Label")));
+                var message = driver.FindElement(By.ClassName("Label"));
+                Assert.IsTrue(message.Text.Contains("E-MAILADRES"));
 
                 driver.Close();
                 driver.Dispose();
