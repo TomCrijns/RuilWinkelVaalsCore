@@ -10,13 +10,13 @@ namespace RuilWinkelVaals.Tests.Controllers
     {
 
         private readonly ILogger<HomeController> _logger;
-        [TestMethod]
+        /*[TestMethod]
         public void Index()
         {
             HomeController controller = new HomeController(_logger);
             ViewResult result = controller.Index() as ViewResult;
             Assert.IsNotNull(result);
-        }
+        }*/
 
         [TestMethod]
         public void Privacy()
