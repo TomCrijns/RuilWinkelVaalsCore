@@ -6,7 +6,7 @@
 
 <div class="text-center">
     <h1 class="display-4"> Admin Panel </h1>
-    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core @ViewData["WelcomeName"]</a>.</p>*@
 </div>
 <div id="particulier", class="particulier">
     <div class="cardBox">
@@ -87,7 +87,7 @@
     window.onload = pageInfo;
 
     function pageInfo() {
-        var overzicht = 4;
+        var overzicht = @ViewData["AccountOverzicht"];
         var a = document.getElementById("particulier");
         if (overzicht == 1) {
             a.style.display = "block";

@@ -22,19 +22,22 @@ namespace RuilWinkelVaals.Controllers
         public IActionResult Index()
         {
             var accounttype =  Convert.ToInt32(HttpContext.Session.GetInt32("AccountType"));
+            ViewData["AccountOverzicht"] = accounttype;
             var ProfileName = HttpContext.Session.GetString("ProfileName");
-            if(accounttype == 1)
-            {
-                return View();
-            }else if(accounttype == 2)
-            {
-                return View();
-            }
-            else if(accounttype == 3)
+            ViewData["WelcomeName"] = ProfileName;
+            if (accounttype == 1)
             {
                 return View();
             }
-            else if(accounttype == 4)
+            else if (accounttype == 2)
+            {
+                return View();
+            }
+            else if (accounttype == 3)
+            {
+                return View();
+            }
+            else if (accounttype == 4)
             {
                 return View();
             }
