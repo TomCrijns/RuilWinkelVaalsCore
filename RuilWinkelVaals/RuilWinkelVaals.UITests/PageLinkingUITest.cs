@@ -26,10 +26,10 @@ namespace RuilWinkelVaals.UITests
                 driver.Manage().Window.Maximize();
                 driver.FindElement(By.Id("RegisterLink")).Click();
                 WebDriverWait wait = new WebDriverWait(driver, new System.TimeSpan(0, 1, 0));
-                wait.Until(wt => wt.FindElement(By.TagName("h1")));
-                var text = driver.FindElement(By.TagName("h1"));
+                wait.Until(wt => wt.FindElement(By.ClassName("Label")));
+                var text = driver.FindElement(By.ClassName("Label"));
                 //Assert
-                Assert.IsTrue(text.Text.Contains("Admin Panel"));
+                Assert.IsTrue(text.Text.Contains("Email adres"));
             }
         }
     }
