@@ -31,8 +31,8 @@ namespace RuilWinkelVaals.Tests.Services.EmailService.EmailConfiguration
             Assert.AreEqual(587, Int32.Parse(emailConfiguration.SmtpPort.ToString()));
             Assert.AreEqual(true, bool.Parse(emailConfiguration.SmtpUseSsl.ToString()));
             Assert.AreEqual(true, bool.Parse(emailConfiguration.SmtpRequireAuthentication.ToString()));
-            Assert.AreEqual("1816802crijns@zuyd.nl", emailConfiguration.SmtpUsername);
-            Assert.AreEqual("G9ZXgcqUhJYB7NLE", emailConfiguration.SmtpPassword);
+            Assert.AreEqual("ruilwinkels@gmail.com", emailConfiguration.SmtpUsername);
+            Assert.AreEqual("MegaTron.1996", emailConfiguration.SmtpPassword);
         }
     }
 }
