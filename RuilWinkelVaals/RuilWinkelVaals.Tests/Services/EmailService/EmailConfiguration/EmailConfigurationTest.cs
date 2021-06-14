@@ -27,7 +27,7 @@ namespace RuilWinkelVaals.Tests.Services.EmailService.EmailConfiguration
 
             var emailConfiguration = SendEmailConfiguration.GetEmailConfiguration(configuration);
             Assert.IsNotNull(emailConfiguration);
-            Assert.AreEqual("smtp-relay.sendinblue.com", emailConfiguration.SmtpServer);
+            Assert.AreEqual("smtp.gmail.com", emailConfiguration.SmtpServer);
             Assert.AreEqual(587, Int32.Parse(emailConfiguration.SmtpPort.ToString()));
             Assert.AreEqual(true, bool.Parse(emailConfiguration.SmtpUseSsl.ToString()));
             Assert.AreEqual(true, bool.Parse(emailConfiguration.SmtpRequireAuthentication.ToString()));
