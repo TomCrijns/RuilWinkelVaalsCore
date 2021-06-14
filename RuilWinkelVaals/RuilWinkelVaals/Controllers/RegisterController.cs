@@ -61,6 +61,14 @@ namespace RuilWinkelVaals.Controllers
                                 DateCreated = DateTime.Today.Date,
                             };
 
+                            if (model.Zakelijk == true)
+                            {
+                                newProfile.AccountType = 2;
+                            }
+                            else
+                            {
+                                newProfile.AccountType = 1;
+                            }
                             //Save profile to DB
                             db.ProfileData.Add(newProfile);
                             db.SaveChanges();
