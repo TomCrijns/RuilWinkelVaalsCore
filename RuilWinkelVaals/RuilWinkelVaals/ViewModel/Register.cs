@@ -45,5 +45,7 @@ namespace RuilWinkelVaals.ViewModel
         public DateTime? Geboortedatum { get; set; }
         [Display(Name = "Zakelijk?")]
         public bool Zakelijk { get; set; }
+        [Required(ErrorMessage = "U bent niet akkoord gegaan met de voorwaarden")]
+        public bool Voorwaarden { get; set; }
     }
 }

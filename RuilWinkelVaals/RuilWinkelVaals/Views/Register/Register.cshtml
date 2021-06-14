@@ -6,6 +6,7 @@
 }
 <!DOCTYPE html>
 
+<div id="myModalBodyDiv"></div>
 <div class="RegisterContainer">
     <div class="pt-5">
         <div class="RegisterBox">
@@ -57,10 +58,18 @@
                     <label asp-for="ValidationPassword" class="Label"></label>
                     <input asp-for="ValidationPassword" class="Textbox" type="password" id="validateTextbox" />
                     <span asp-validation-for="ValidationPassword" class="Validation"></span>
-                  
+
                     @*Business*@
                     <label asp-for="Zakelijk" class="Label"></label>
                     <input asp-for="Zakelijk" type="checkbox" id="zakelijkCheckbox" />
+
+                    @**Voorwaarden*@
+                    <label asp-for="Voorwaarden" class="Label"></label>
+                    <input asp-for="Voorwaarden" type="checkbox" id="voorwaardenCheckbox" />
+                    <span asp-validation-for="Voorwaarden" class="Validation"></span>
+                    
+                    <input class="Button" id="voorwaardenButton" type="button" value="Voorwaarden" onclick="location.href = '@Url.Action("VoorwaardenPartial")'" />
+
                     @Html.ValidationMessage("RegisterError", null, new { @class = "Validation", @id = "registrationError" })
                     <input class="Button" id="registerButton" type="submit" value="Registreren" onclick="location.href = '@Url.Action("Register")'" />
                 </form>
