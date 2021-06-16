@@ -44,7 +44,7 @@ namespace RuilWinkelVaals.Controllers
                         HttpContext.Session.SetInt32("UserId", profileData.Id);
                         HttpContext.Session.SetInt32("AccountType", Int32.Parse(profileData.AccountType.ToString()));
                         HttpContext.Session.SetString("ProfileName", profileData.Voornaam);
-                        return RedirectToAction("Privacy", "Home");
+                        return RedirectToAction("Index", "Home");
                 }
                 else
                 {

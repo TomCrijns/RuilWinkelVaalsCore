@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Http; 
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,6 +10,9 @@
     <script src="https://use.fontawesome.com/31b66e833c.js"></script>
 </head>
 <body>
+    <div class="topnav" id="myTopnav">       
+        <a>Welkom, @Context.Session.GetString("ProfileName")</a>
+    </div>
 
     <div id="mySidenav" class="sidenav">
         <img class="logo" alt="RuilWinkel Vaals logo" src="~/images/LoginBackgroundImage.png" />

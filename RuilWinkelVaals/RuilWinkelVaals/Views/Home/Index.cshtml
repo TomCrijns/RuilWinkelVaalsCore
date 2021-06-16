@@ -2,13 +2,13 @@
     ViewData["Title"] = "Home Page";
     <link rel="stylesheet" href="~/css/AdminStyle.css" />
 }
-
+@using Microsoft.AspNetCore.Http;
 
 <div class="text-center">
-    <h1 class="display-4"> Admin Panel </h1>
+    <h1 class="display-4"> Dashboard </h1>
     @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core @ViewData["WelcomeName"]</a>.</p>*@
 </div>
-<div id="particulier", class="particulier">
+<div id="particulier" , class="particulier">
     <div class="cardBox">
         <div class="card">
             <div>
@@ -31,7 +31,7 @@
     </div>
 </div>
 
-<div id="zakelijk", class="zakelijk">
+<div id="zakelijk" , class="zakelijk">
     <div class="cardBox">
         <div class="card">
             <div>
@@ -87,7 +87,7 @@
     window.onload = pageInfo;
 
     function pageInfo() {
-        var overzicht = @ViewData["AccountOverzicht"];
+        var overzicht = @Context.Session.GetInt32("AccountType");
         var a = document.getElementById("particulier");
         if (overzicht == 1) {
             a.style.display = "block";
